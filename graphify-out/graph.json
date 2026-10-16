@@ -1,6 +1,54 @@
 {
   "nodes": [
     {
+      "id": "e2e_authoring_spec",
+      "label": "authoring.spec.js",
+      "file_type": "code",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "e2e_authoring_spec_user",
+      "label": "USER",
+      "file_type": "code",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L5",
+      "_origin": "ast"
+    },
+    {
+      "id": "e2e_authoring_spec_session",
+      "label": "SESSION",
+      "file_type": "code",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L9",
+      "_origin": "ast"
+    },
+    {
+      "id": "e2e_authoring_spec_own_post",
+      "label": "OWN_POST",
+      "file_type": "code",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L10",
+      "_origin": "ast"
+    },
+    {
+      "id": "e2e_authoring_spec_persistedposts",
+      "label": "persistedPosts()",
+      "file_type": "code",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L13",
+      "_origin": "ast"
+    },
+    {
+      "id": "e2e_authoring_spec_seedentry",
+      "label": "seedEntry()",
+      "file_type": "code",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L18",
+      "_origin": "ast"
+    },
+    {
       "id": "e2e_discovery_spec",
       "label": "discovery.spec.js",
       "file_type": "code",
@@ -446,7 +494,7 @@
       "label": "App()",
       "file_type": "code",
       "source_file": "frontend/src/App.jsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "_origin": "ast",
       "community": 2
     },
@@ -511,7 +559,7 @@
       "label": "accents",
       "file_type": "code",
       "source_file": "frontend/src/components/BlogCard.jsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "_origin": "ast"
     },
     {
@@ -519,7 +567,7 @@
       "label": "formatDate()",
       "file_type": "code",
       "source_file": "frontend/src/components/BlogCard.jsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast"
     },
     {
@@ -527,7 +575,7 @@
       "label": "BlogCard()",
       "file_type": "code",
       "source_file": "frontend/src/components/BlogCard.jsx",
-      "source_location": "L33",
+      "source_location": "L35",
       "_origin": "ast"
     },
     {
@@ -721,6 +769,70 @@
       "community": 2
     },
     {
+      "id": "pages_authoring_test",
+      "label": "Authoring.test.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "pages_authoring_test_user",
+      "label": "USER",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L18",
+      "_origin": "ast"
+    },
+    {
+      "id": "pages_authoring_test_owner",
+      "label": "OWNER",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L19",
+      "_origin": "ast"
+    },
+    {
+      "id": "pages_authoring_test_admin",
+      "label": "ADMIN",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L20",
+      "_origin": "ast"
+    },
+    {
+      "id": "pages_authoring_test_post",
+      "label": "POST",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L21",
+      "_origin": "ast"
+    },
+    {
+      "id": "pages_authoring_test_mount",
+      "label": "mount()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L31",
+      "_origin": "ast"
+    },
+    {
+      "id": "pages_authoring_test_failwrites",
+      "label": "failWrites()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L42",
+      "_origin": "ast"
+    },
+    {
+      "id": "pages_authoring_test_fill",
+      "label": "fill()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L51",
+      "_origin": "ast"
+    },
+    {
       "id": "pages_home",
       "label": "Home.jsx",
       "file_type": "code",
@@ -733,7 +845,7 @@
       "label": "newestPosts()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "_origin": "ast"
     },
     {
@@ -741,7 +853,7 @@
       "label": "Home()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "_origin": "ast"
     },
     {
@@ -923,19 +1035,11 @@
       "_origin": "ast"
     },
     {
-      "id": "pages_readblog_canmanagepost",
-      "label": "canManagePost()",
-      "file_type": "code",
-      "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L19",
-      "_origin": "ast"
-    },
-    {
       "id": "pages_readblog_readblog",
       "label": "ReadBlog()",
       "file_type": "code",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L32",
+      "source_location": "L25",
       "_origin": "ast"
     },
     {
@@ -1032,6 +1136,30 @@
       "file_type": "code",
       "source_file": "frontend/src/pages/RegisterPage.jsx",
       "source_location": "L27",
+      "_origin": "ast"
+    },
+    {
+      "id": "pages_writeblog",
+      "label": "WriteBlog.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "pages_writeblog_messages",
+      "label": "messages",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L10",
+      "_origin": "ast"
+    },
+    {
+      "id": "pages_writeblog_writeblog",
+      "label": "WriteBlog()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L25",
       "_origin": "ast"
     },
     {
@@ -1185,6 +1313,118 @@
       "file_type": "code",
       "source_file": "frontend/src/utils/auth.test.js",
       "source_location": "L30",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts",
+      "label": "posts.js",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_canmanagepost",
+      "label": "canManagePost()",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L20",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_validfields",
+      "label": "validFields()",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L32",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_createpost",
+      "label": "createPost()",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L46",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_updatepost",
+      "label": "updatePost()",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L76",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_deletepost",
+      "label": "deletePost()",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L100",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_test",
+      "label": "posts.test.js",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_test_admin",
+      "label": "ADMIN",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L13",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_test_user",
+      "label": "USER",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L14",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_test_owner",
+      "label": "OWNER",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L15",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_test_post",
+      "label": "POST",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L16",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_test_fields",
+      "label": "FIELDS",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L17",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_test_failwrites",
+      "label": "failWrites()",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L29",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_posts_test_identity",
+      "label": "identity()",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L38",
       "_origin": "ast"
     },
     {
@@ -1468,6 +1708,81 @@
     }
   ],
   "links": [
+    {
+      "source": "e2e_authoring_spec",
+      "target": "e2e_fixtures",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "e2e_authoring_spec",
+      "target": "e2e_fixtures_test",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "e2e_authoring_spec",
+      "target": "e2e_fixtures_post",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "e2e_authoring_spec",
+      "target": "e2e_authoring_spec_user",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "e2e_authoring_spec",
+      "target": "e2e_authoring_spec_session",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "e2e_authoring_spec",
+      "target": "e2e_authoring_spec_own_post",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "e2e_authoring_spec",
+      "target": "e2e_authoring_spec_persistedposts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "e2e_authoring_spec",
+      "target": "e2e_authoring_spec_seedentry",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/e2e/authoring.spec.js",
+      "source_location": "L18",
+      "weight": 1.0
+    },
     {
       "source": "e2e_discovery_spec",
       "target": "e2e_fixtures",
@@ -2008,7 +2323,7 @@
     },
     {
       "source": "src_app",
-      "target": "pages_landingpage",
+      "target": "pages_writeblog",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -2018,7 +2333,7 @@
     },
     {
       "source": "src_app",
-      "target": "pages_loginpage",
+      "target": "pages_landingpage",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -2028,7 +2343,7 @@
     },
     {
       "source": "src_app",
-      "target": "pages_registerpage",
+      "target": "pages_loginpage",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -2038,7 +2353,7 @@
     },
     {
       "source": "src_app",
-      "target": "utils_auth",
+      "target": "pages_registerpage",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -2048,12 +2363,22 @@
     },
     {
       "source": "src_app",
+      "target": "utils_auth",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app",
       "target": "utils_auth_getsession",
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/App.jsx",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -2062,7 +2387,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/App.jsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -2153,11 +2478,31 @@
     },
     {
       "source": "components_blogcard",
+      "target": "utils_posts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/BlogCard.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "components_blogcard",
+      "target": "utils_posts_canmanagepost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/BlogCard.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "components_blogcard",
       "target": "components_blogcard_accents",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/components/BlogCard.jsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -2166,7 +2511,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/components/BlogCard.jsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -2175,7 +2520,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/components/BlogCard.jsx",
-      "source_location": "L33",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -2185,7 +2530,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/components/BlogCard.jsx",
-      "source_location": "L39",
+      "source_location": "L41",
       "weight": 1.0
     },
     {
@@ -2484,6 +2829,149 @@
       "weight": 1.0
     },
     {
+      "source": "pages_authoring_test",
+      "target": "src_app",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "pages_home",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "utils_storage",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "utils_storage_getposts",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "utils_storage_saveposts",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "utils_storage_saveusers",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "utils_auth",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "utils_auth_setsession",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "pages_authoring_test_user",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "pages_authoring_test_owner",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "pages_authoring_test_admin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "pages_authoring_test_post",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "pages_authoring_test_mount",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "pages_authoring_test_failwrites",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "pages_authoring_test_fill",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
       "source": "pages_home",
       "target": "components_blogcard",
       "relation": "imports_from",
@@ -2535,11 +3023,31 @@
     },
     {
       "source": "pages_home",
+      "target": "utils_auth",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_home",
+      "target": "utils_auth_getsession",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_home",
       "target": "pages_home_newestposts",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -2548,7 +3056,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -2862,7 +3370,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -2872,7 +3380,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -2882,7 +3390,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -2892,7 +3400,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -2902,7 +3410,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -2912,7 +3420,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -2922,7 +3430,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -2932,7 +3440,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -2942,16 +3450,57 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
       "source": "pages_readblog",
-      "target": "pages_readblog_canmanagepost",
-      "relation": "contains",
+      "target": "utils_posts",
+      "relation": "imports_from",
+      "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L19",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_readblog",
+      "target": "utils_posts_canmanagepost",
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/ReadBlog.jsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_readblog",
+      "target": "utils_posts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/ReadBlog.jsx",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_readblog",
+      "target": "utils_posts_canmanagepost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/ReadBlog.jsx",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_readblog",
+      "target": "utils_posts_deletepost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/ReadBlog.jsx",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -2960,17 +3509,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L32",
-      "weight": 1.0
-    },
-    {
-      "source": "pages_readblog_readblog",
-      "target": "pages_readblog_canmanagepost",
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L71",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -3007,16 +3546,6 @@
       "source": "pages_reading_test",
       "target": "pages_readblog",
       "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/pages/Reading.test.jsx",
-      "source_location": "L9",
-      "weight": 1.0
-    },
-    {
-      "source": "pages_reading_test",
-      "target": "pages_readblog_canmanagepost",
-      "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/Reading.test.jsx",
@@ -3181,6 +3710,104 @@
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/RegisterPage.jsx",
       "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog",
+      "target": "utils_auth",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog",
+      "target": "utils_auth_getsession",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog",
+      "target": "utils_storage",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog",
+      "target": "utils_storage_getposts",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog",
+      "target": "utils_posts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog",
+      "target": "utils_posts_canmanagepost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog",
+      "target": "utils_posts_createpost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog",
+      "target": "utils_posts_updatepost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog",
+      "target": "pages_writeblog_messages",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog",
+      "target": "pages_writeblog_writeblog",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -3528,6 +4155,314 @@
       "weight": 1.0
     },
     {
+      "source": "utils_posts",
+      "target": "utils_auth",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts",
+      "target": "utils_auth_getsession",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts",
+      "target": "utils_storage",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts",
+      "target": "utils_storage_getposts",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts",
+      "target": "utils_storage_saveposts",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts",
+      "target": "utils_posts_canmanagepost",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts",
+      "target": "utils_posts_validfields",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts",
+      "target": "utils_posts_createpost",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts",
+      "target": "utils_posts_updatepost",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts",
+      "target": "utils_posts_deletepost",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_createpost",
+      "target": "utils_posts_validfields",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_updatepost",
+      "target": "utils_posts_validfields",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_updatepost",
+      "target": "utils_posts_canmanagepost",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_deletepost",
+      "target": "utils_posts_canmanagepost",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L106",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_canmanagepost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_createpost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_updatepost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_deletepost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_storage",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_storage_getposts",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_storage_saveposts",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_storage_saveusers",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_auth",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_auth_setsession",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_test_admin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_test_user",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_test_owner",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_test_post",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_test_fields",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_test_failwrites",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test",
+      "target": "utils_posts_test_identity",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
       "source": "utils_storage",
       "target": "utils_storage_post_fields",
       "relation": "contains",
@@ -3853,6 +4788,16 @@
       "weight": 1.0
     },
     {
+      "source": "pages_readblog",
+      "target": "utils_posts",
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/ReadBlog.jsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
       "source": "src_app",
       "target": "pages_home_home",
       "relation": "imports",
@@ -3874,7 +4819,7 @@
     },
     {
       "source": "src_app",
-      "target": "pages_landingpage_landingpage",
+      "target": "pages_writeblog_writeblog",
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -3884,7 +4829,7 @@
     },
     {
       "source": "src_app",
-      "target": "pages_loginpage_loginpage",
+      "target": "pages_landingpage_landingpage",
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -3894,12 +4839,22 @@
     },
     {
       "source": "src_app",
-      "target": "pages_registerpage_registerpage",
+      "target": "pages_loginpage_loginpage",
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/App.jsx",
       "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app",
+      "target": "pages_registerpage_registerpage",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -3910,6 +4865,26 @@
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/main.jsx",
       "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "src_app_app",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_authoring_test",
+      "target": "pages_home_home",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Authoring.test.jsx",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -3980,6 +4955,16 @@
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/Reading.test.jsx",
       "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_reading_test",
+      "target": "utils_posts_canmanagepost",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Reading.test.jsx",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -4013,6 +4998,36 @@
       "weight": 1.0
     },
     {
+      "source": "utils_posts_test_identity",
+      "target": "utils_auth_setsession",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test_identity",
+      "target": "utils_storage_saveposts",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_test_identity",
+      "target": "utils_storage_saveusers",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/posts.test.js",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
       "source": "components_blogcard_blogcard",
       "target": "components_avatar_getavatar",
       "relation": "calls",
@@ -4020,7 +5035,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/components/BlogCard.jsx",
-      "source_location": "L53",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "components_blogcard_blogcard",
+      "target": "utils_posts_canmanagepost",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/components/BlogCard.jsx",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -4053,7 +5079,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L34",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -4064,7 +5090,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L35",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -4075,7 +5101,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L48",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -4086,7 +5112,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L56",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -4097,7 +5123,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/pages/ReadBlog.jsx",
-      "source_location": "L61",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_readblog_readblog",
+      "target": "utils_posts_canmanagepost",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/pages/ReadBlog.jsx",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -4109,6 +5146,39 @@
       "confidence_score": 1.0,
       "source_file": "frontend/src/pages/RegisterPage.jsx",
       "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog_writeblog",
+      "target": "utils_storage_getposts",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog_writeblog",
+      "target": "utils_auth_getsession",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "pages_writeblog_writeblog",
+      "target": "utils_posts_canmanagepost",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/pages/WriteBlog.jsx",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -4154,13 +5224,112 @@
       "source_file": "frontend/src/utils/auth.js",
       "source_location": "L182",
       "weight": 1.0
+    },
+    {
+      "source": "utils_posts_createpost",
+      "target": "utils_auth_getsession",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_createpost",
+      "target": "utils_storage_getposts",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_createpost",
+      "target": "utils_storage_saveposts",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_updatepost",
+      "target": "utils_auth_getsession",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_updatepost",
+      "target": "utils_storage_getposts",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_updatepost",
+      "target": "utils_storage_saveposts",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_deletepost",
+      "target": "utils_auth_getsession",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_deletepost",
+      "target": "utils_storage_getposts",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_posts_deletepost",
+      "target": "utils_storage_saveposts",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/utils/posts.js",
+      "source_location": "L113",
+      "weight": 1.0
     }
   ],
   "metadata": {
-    "built_at": "2026-10-16T04:40:52.511601+00:00",
+    "built_at": "2026-10-16T04:49:36.970957+00:00",
     "version": "graph_update-v1",
     "codebase_root": "/Users/rvarikuti/SEL-Workspace-New/artifacts-v2/T0132PcJVCRTV000116102603283170/developer",
     "force": true,
-    "files_scanned": 37
+    "files_scanned": 42
   }
 }
