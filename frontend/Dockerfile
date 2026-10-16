@@ -1,7 +1,7 @@
-FROM node:20.18.1-alpine AS build
+FROM --platform=$BUILDPLATFORM node:20.18.1-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --no-bin-links --no-audit --no-fund
+RUN npm ci --no-audit --no-fund && test -f node_modules/vite/bin/vite.js
 COPY . .
 RUN node node_modules/vite/bin/vite.js build
 
