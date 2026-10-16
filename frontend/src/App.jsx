@@ -1,14 +1,20 @@
-/** Compose only the public discovery route and an explicit unknown-path fallback. */
+/** Compose public discovery and identity routes without inventing the later protected pages. */
+import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { PublicNavbar } from './components/PublicNavbar.jsx';
+import { Navbar } from './components/Navbar.jsx';
 import LandingPage from './pages/LandingPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import { getSession } from './utils/auth.js';
 
 /**
- * Render the discovery shell inside the single router supplied by main.
+ * Render the public or authenticated shell inside the single router supplied by main.
  * Returns:
- *   {JSX.Element} Public root and not-found route; later feature slices own all other routes.
+ *   {JSX.Element} Public root, identity forms, and unchanged fallback; later slices own protected pages.
  */
 export default function App() {
+  const [session, setSession] = useState(() => getSession());
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <a
@@ -17,9 +23,15 @@ export default function App() {
       >
         Skip to content
       </a>
-      <PublicNavbar />
+      {session ? (
+        <Navbar session={session} onSessionChange={setSession} />
+      ) : (
+        <PublicNavbar />
+      )}
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage session={session} />} />
+        <Route path="/login" element={<LoginPage onSessionChange={setSession} />} />
+        <Route path="/register" element={<RegisterPage onSessionChange={setSession} />} />
         <Route
           path="*"
           element={(
