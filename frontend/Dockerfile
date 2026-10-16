@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:20.18.1-alpine AS build
+FROM --platform=$BUILDPLATFORM node:22.22.0-bookworm-slim AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund && test -f node_modules/vite/bin/vite.js
