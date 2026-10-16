@@ -1,6 +1,6 @@
 /** Compose public identity and discovery with guarded reading, authoring and administration across all nine routes. */
-import { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import { PublicNavbar } from './components/PublicNavbar.jsx';
 import { Navbar } from './components/Navbar.jsx';
 import { ProtectedRoute } from './components/ProtectedRoute.jsx';
@@ -21,6 +21,14 @@ import { getSession } from './utils/auth.js';
  */
 export default function App() {
   const [session, setSession] = useState(() => getSession());
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const titles = {
+      '': 'A quiet place to write', login: 'Login', register: 'Register', blogs: 'All Posts',
+      blog: 'Read Post', write: 'Write a Post', edit: 'Edit Post', admin: 'Dashboard', users: 'User Management',
+    };
+    document.title = `${titles[pathname.split('/')[1]] || 'Page not found'} — WriteSpace`;
+  }, [pathname]);
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <a

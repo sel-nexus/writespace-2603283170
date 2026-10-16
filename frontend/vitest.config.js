@@ -9,6 +9,6 @@ export default defineConfig({
     include: ['src/**/*.test.{js,jsx}'],
     pool: 'forks',
     poolOptions: { forks: { singleFork: true } },
-    coverage: { provider: 'v8', include: ['src/**/*.{js,jsx}'], exclude: ['src/main.jsx', 'src/test/**'], reporter: ['text', 'json-summary'] }
+    coverage: { provider: 'v8', include: ['src/**/*.{js,jsx}'], exclude: ['src/main.jsx', 'src/test/**', 'src/**/*.test.{js,jsx}'], reporter: ['text', 'json-summary'] }
   }
 });

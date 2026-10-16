@@ -35,6 +35,7 @@ export function newestPosts(posts) {
 export default function Home() {
   const [posts] = useState(() => newestPosts(getPosts()));
   const [roles] = useState(() => new Map(getUsers().map(user => [user.id, user.role])));
+  const session = getSession();
   return (
     <main id="main-content" className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
@@ -61,8 +62,11 @@ export default function Home() {
         <section aria-label="All posts" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, index) => (
             <BlogCard
-              key={post.id} post={post} index={index}
-              authorRole={roles.get(post.authorId)} session={getSession()}
+              key={post.id}
+              post={post}
+              index={index}
+              authorRole={roles.get(post.authorId)}
+              session={session}
             />
           ))}
         </section>

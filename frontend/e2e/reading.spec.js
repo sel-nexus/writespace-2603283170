@@ -72,7 +72,7 @@ for (const [width, columns] of [[390, 1], [768, 2], [1024, 3]]) {
   });
 }
 
-test('user receives Edit only on their own post, with no deletion controls', async ({ page }) => {
+test('user receives Edit and Delete post only on their own post', async ({ page }) => {
   const owned = post(2, { authorId: USER_ID, authorName: USER.displayName });
   const other = post(1);
   await seed(page, [other, owned]);
@@ -80,21 +80,21 @@ test('user receives Edit only on their own post, with no deletion controls', asy
   await page.getByRole('link', { name: owned.title }).click();
   await expect(page.getByRole('link', { name: 'Edit', exact: true })).toHaveAttribute('href', `/edit/${owned.id}`);
   await expect(page.getByRole('img', { name: 'User avatar' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Delete', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Delete post', exact: true })).toBeVisible();
   await page.getByRole('link', { name: 'Back to All Posts' }).click();
   await page.getByRole('link', { name: other.title }).click();
   await expect(page.getByRole('link', { name: 'Edit', exact: true })).toHaveCount(0);
   await expect(page.getByRole('navigation', { name: 'Post actions' }).getByRole('link')).toHaveCount(1);
-  await expect(page.getByRole('button', { name: 'Delete', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Delete post', exact: true })).toHaveCount(0);
 });
 
-test('administrator receives Edit on another author post', async ({ page }) => {
+test('administrator receives Edit and Delete post on another author post', async ({ page }) => {
   const record = post(1, { authorId: USER_ID, authorName: USER.displayName });
   await seed(page, [record], ADMIN);
   await page.goto('/blogs');
   await page.getByRole('link', { name: record.title }).click();
   await expect(page.getByRole('link', { name: 'Edit', exact: true })).toHaveAttribute('href', `/edit/${record.id}`);
-  await expect(page.getByRole('button', { name: 'Delete', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Delete post', exact: true })).toBeVisible();
 });
 
 test('plain-text hostile markup remains literal in list and reader through reload', async ({ page }) => {

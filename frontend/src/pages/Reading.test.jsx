@@ -118,6 +118,46 @@ describe('Home', () => {
     expect(screen.queryByText(USER.password)).not.toBeInTheDocument();
   });
 
+  it('reads one current session per render and updates role-correct card actions after session changes', () => {
+    seedSession(SESSION);
+    const owned = post(1);
+    const other = post(2, { authorId: ADMIN_ID, authorName: REGISTERED_ADMIN.displayName });
+    savePosts([owned, other]);
+    const read = vi.spyOn(Storage.prototype, 'getItem');
+    const view = render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+    const sessionReads = () => read.mock.calls.filter(([key]) => key === 'writespace_session');
+    const ownedCard = screen.getByRole('link', { name: owned.title }).closest('article');
+    const otherCard = screen.getByRole('link', { name: other.title }).closest('article');
+    expect(within(ownedCard).getByRole('link', { name: 'Edit' })).toHaveAttribute('href', `/edit/${owned.id}`);
+    expect(within(otherCard).queryByRole('link', { name: 'Edit' })).not.toBeInTheDocument();
+    expect(sessionReads()).toHaveLength(1);
+
+    for (const [session, ownsAction, otherAction] of [
+      [ADMIN_SESSION, true, true], [SESSION, true, false], [null, false, false],
+    ]) {
+      if (session) localStorage.setItem('writespace_session', JSON.stringify(session));
+      else localStorage.removeItem('writespace_session');
+      read.mockClear();
+      view.rerender(
+        <MemoryRouter>
+          <Home />
+        </MemoryRouter>,
+      );
+      for (const [card, allowed, record] of [[ownedCard, ownsAction, owned], [otherCard, otherAction, other]]) {
+        if (allowed) {
+          expect(within(card).getByRole('link', { name: 'Edit' })).toHaveAttribute('href', `/edit/${record.id}`);
+        } else {
+          expect(within(card).queryByRole('link', { name: 'Edit' })).not.toBeInTheDocument();
+        }
+      }
+      expect(sessionReads()).toHaveLength(1);
+    }
+  });
+
   it('keeps its mount snapshot through rerenders, then reads fresh posts on remount', () => {
     savePosts([post(1)]);
     const view = mount('/blogs', <Home />);
@@ -184,18 +224,19 @@ describe('ReadBlog and reading routes', () => {
     expect(screen.getByText(record.authorName)).toBeInTheDocument();
     expect(screen.getByText('Mar 01, 2026')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Edit' })).toHaveAttribute('href', `/edit/${record.id}`);
-    expect(screen.queryByRole('button', { name: 'Delete' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Delete post', exact: true })).toBeInTheDocument();
     await user.click(screen.getByRole('link', { name: 'Back to All Posts' }));
     expect(screen.getByRole('heading', { level: 1, name: 'All Posts' })).toBeInTheDocument();
     expect(localStorage.getItem('writespace_posts')).toBe(raw);
     expect(getPosts()).toEqual([record]);
   });
 
-  it.each([ADMIN, ADMIN_SESSION, SESSION])('displays Edit for an administrator or owner on a deep reader route', session => {
+  it.each([ADMIN, ADMIN_SESSION, SESSION])('displays Edit and Delete post for an administrator or owner', session => {
     seedSession(session);
     savePosts([post(1)]);
     mount(`/blog/${post(1).id}`);
     expect(screen.getByRole('link', { name: 'Edit' })).toHaveAttribute('href', `/edit/${post(1).id}`);
+    expect(screen.getByRole('button', { name: 'Delete post', exact: true })).toBeInTheDocument();
   });
 
   it('shows only back-to-list for a non-owner, and uses the registered author role', () => {
@@ -207,6 +248,7 @@ describe('ReadBlog and reading routes', () => {
     expect(within(actions).getAllByRole('link')).toHaveLength(1);
     expect(within(actions).getByRole('link', { name: 'Back to All Posts' })).toHaveAttribute('href', '/blogs');
     expect(screen.queryByRole('link', { name: 'Edit' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Delete post', exact: true })).not.toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Admin avatar' })).toBeInTheDocument();
   });
 

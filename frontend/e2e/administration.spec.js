@@ -35,6 +35,24 @@ async function posts(page) {
   return page.evaluate(() => JSON.parse(localStorage.getItem('writespace_posts') || '[]'));
 }
 
+/**
+ * Inject a test-only browser storage fault after seeding/sign-in, not an application mock.
+ * Only localStorage.setItem for the selected key throws a real DOMException; all reads,
+ * sessionStorage and nonblocked writes still use native Storage methods and durable data.
+ * Installed in the current document only, so reload restores native writes automatically.
+ */
+async function blockStorageWrite(page, blockedKey) {
+  await page.evaluate(keyToBlock => {
+    const nativeSetItem = Storage.prototype.setItem;
+    Storage.prototype.setItem = function (key, value) {
+      if (this === window.localStorage && String(key) === keyToBlock) {
+        throw new DOMException('Test-only storage write restriction', 'QuotaExceededError');
+      }
+      return nativeSetItem.call(this, key, value);
+    };
+  }, blockedKey);
+}
+
 /** Resolve an account action in the desktop table instead of its hidden mobile copy. */
 function accountDelete(page, username) {
   return page.getByRole('table', { name: 'Local accounts' }).getByRole('button', { name: `Delete ${username}`, exact: true });
@@ -153,6 +171,79 @@ test('dashboard inline edit and delete manage another author post with cancellat
   await expect(page.getByRole('link', { name: stories[1].title, exact: true })).toBeVisible();
 });
 
+test('admin account create and confirmed deletion write failures retain form, accounts and route without false success', async ({ page }) => {
+  await seedEntry(page, null);
+  await page.goto('/login');
+  await signIn(page, 'admin', 'admin');
+  await page.getByRole('link', { name: 'Manage Users', exact: true }).click();
+  await expect(page).toHaveURL(/\/users$/);
+  const originalURL = page.url();
+  const originalAccounts = await accounts(page);
+  const fields = { displayName: 'Unsaved Administrator', username: 'unsaved-admin', password: 'local-failure-only', role: 'admin' };
+  await page.getByLabel('Display name', { exact: true }).fill(fields.displayName);
+  await page.getByLabel('Username', { exact: true }).fill(fields.username);
+  await page.getByLabel('Password', { exact: true }).fill(fields.password);
+  await page.getByRole('combobox', { name: 'Role', exact: true }).selectOption(fields.role);
+  await blockStorageWrite(page, 'writespace_users');
+  await page.getByRole('button', { name: 'Create User', exact: true }).click();
+  await expect(page.getByRole('alert')).toHaveText('Unable to save account changes. No changes have been saved.');
+  await expect(page.getByRole('status')).toHaveText('');
+  await expect(page).toHaveURL(originalURL);
+  await expect(page.getByLabel('Display name', { exact: true })).toHaveValue(fields.displayName);
+  await expect(page.getByLabel('Username', { exact: true })).toHaveValue(fields.username);
+  await expect(page.getByLabel('Password', { exact: true })).toHaveValue(fields.password);
+  await expect(page.getByRole('combobox', { name: 'Role', exact: true })).toHaveValue(fields.role);
+  await expect(accountDelete(page, fields.username)).toHaveCount(0);
+  expect(await accounts(page)).toEqual(originalAccounts);
+
+  page.once('dialog', async dialog => {
+    expect(dialog.type()).toBe('confirm');
+    await dialog.accept();
+  });
+  await accountDelete(page, WRITER.username).click();
+  await expect(page.getByRole('alert')).toHaveText('Unable to save account changes. No changes have been saved.');
+  await expect(page.getByRole('status')).toHaveText('');
+  await expect(page).toHaveURL(originalURL);
+  await expect(accountDelete(page, WRITER.username)).toBeVisible();
+  await expect(accountDelete(page, WRITER.username)).toBeEnabled();
+  expect(await accounts(page)).toEqual(originalAccounts);
+  await page.reload();
+  await expect(page).toHaveURL(originalURL);
+  await expect(accountDelete(page, WRITER.username)).toBeVisible();
+  await expect(accountDelete(page, fields.username)).toHaveCount(0);
+  expect(await accounts(page)).toEqual(originalAccounts);
+});
+
+test('admin dashboard confirmed post deletion write failure retains post and route with generic feedback', async ({ page }) => {
+  const stories = [post(1, { authorId: ID, authorName: WRITER.displayName }), post(2)];
+  await seedEntry(page, null, stories);
+  await page.goto('/login');
+  await signIn(page, 'admin', 'admin');
+  await expect(page).toHaveURL(/\/admin$/);
+  const originalURL = page.url();
+  const row = page.getByRole('article', { name: stories[0].title, exact: true });
+  await expect(row).toBeVisible();
+  await blockStorageWrite(page, 'writespace_posts');
+  page.once('dialog', async dialog => {
+    expect(dialog.type()).toBe('confirm');
+    await dialog.accept();
+  });
+  await row.getByRole('button', { name: 'Delete', exact: true }).click();
+  await expect(page.getByRole('alert')).toHaveText('Unable to delete this post. It has not been deleted.');
+  await expect(page).toHaveURL(originalURL);
+  await expect(row).toBeVisible();
+  await expect(row.getByRole('button', { name: 'Delete', exact: true })).toBeEnabled();
+  await expect(page.getByRole('status')).toHaveCount(0);
+  await expect(page.getByRole('group', { name: 'Total Posts', exact: true })).toHaveText('Total Posts2');
+  expect(await posts(page)).toEqual(stories);
+  await page.reload();
+  await expect(page).toHaveURL(originalURL);
+  await expect(row).toBeVisible();
+  await expect(page.getByRole('article', { name: stories[1].title, exact: true })).toBeVisible();
+  await expect(page.getByRole('group', { name: 'Total Posts', exact: true })).toHaveText('Total Posts2');
+  expect(await posts(page)).toEqual(stories);
+});
+
 for (const path of ['/admin', '/users']) {
   test(`normal writer deep-entry ${path} denies administrator content`, async ({ page }) => {
     await seedEntry(page, { userId: ID, username: WRITER.username, displayName: WRITER.displayName, role: 'user' });
@@ -185,10 +276,43 @@ test('responsive account table becomes stacked mobile cards without overflow and
   await expect(page.getByRole('table', { name: 'Local accounts' })).toBeHidden();
   await expect(page.getByRole('article', { name: `Account ${WRITER.username}` })).toBeVisible();
   await expect(page.getByRole('article', { name: 'Account admin', exact: true }).getByRole('button')).toBeDisabled();
-  await createAccount(page, 'long-account-name-without-spaces'.repeat(3), 'Long editorial display name '.repeat(4), 'user');
+  const mobileUsername = 'long-account-name-without-spaces'.repeat(3);
+  await createAccount(page, mobileUsername, 'Long editorial display name '.repeat(4), 'user');
   await expect(page.getByRole('article')).toHaveCount(3);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.screenshot({ path: testInfo.outputPath('administration-cards-mobile.png'), fullPage: true });
+  const created = await accounts(page);
+  const mobileCard = page.getByRole('article', { name: `Account ${mobileUsername}`, exact: true });
+  const mobileDelete = mobileCard.getByRole('button', { name: `Delete ${mobileUsername}`, exact: true });
+  await expect(mobileCard).toBeVisible();
+  await expect(mobileDelete).toBeVisible();
+  await expect(mobileDelete).toBeEnabled();
+  page.once('dialog', async dialog => {
+    expect(dialog.type()).toBe('confirm');
+    await dialog.dismiss();
+  });
+  await mobileDelete.click();
+  await expect(mobileCard).toBeVisible();
+  await expect(mobileDelete).toBeEnabled();
+  await expect(page.getByRole('status')).toHaveText('');
+  expect(await accounts(page)).toEqual(created);
+  page.once('dialog', async dialog => {
+    expect(dialog.type()).toBe('confirm');
+    await dialog.accept();
+  });
+  await mobileDelete.click();
+  await expect(page.getByRole('status')).toHaveText('Account deleted successfully.');
+  await expect(mobileCard).toHaveCount(0);
+  const remaining = created.filter(user => user.username !== mobileUsername);
+  expect(await accounts(page)).toEqual(remaining);
+  await page.reload();
+  await expect(page).toHaveURL(/\/users$/);
+  await expect(page.getByRole('table', { name: 'Local accounts' })).toBeHidden();
+  await expect(mobileCard).toHaveCount(0);
+  await expect(page.getByRole('article', { name: `Account ${WRITER.username}`, exact: true })).toBeVisible();
+  await expect(page.getByRole('article', { name: 'Account admin', exact: true }).getByRole('button')).toBeDisabled();
+  await expect(page.getByRole('article')).toHaveCount(2);
+  expect(await accounts(page)).toEqual(remaining);
   await page.getByRole('button', { name: 'Open navigation', exact: true }).click();
   await page.getByRole('link', { name: 'Dashboard', exact: true }).click();
   await expect(page).toHaveURL(/\/admin$/);

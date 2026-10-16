@@ -5,9 +5,10 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 afterEach(() => { vi.useRealTimers(); });
-import { MemoryRouter } from 'react-router-dom';
+import { Link, MemoryRouter, Route, Routes } from 'react-router-dom';
 import App from '../App.jsx';
 import Home from './Home.jsx';
+import WriteBlog from './WriteBlog.jsx';
 import { getPosts, savePosts, saveUsers } from '../utils/storage.js';
 import { setSession } from '../utils/auth.js';
 
@@ -33,6 +34,27 @@ function mount(path = '/write') {
     <StrictMode>
       <MemoryRouter initialEntries={[path]}>
         <App />
+      </MemoryRouter>
+    </StrictMode>,
+  );
+}
+
+/** Keep one authoring instance mounted while explicit links change its matched child route. */
+function mountRouteHarness() {
+  return render(
+    <StrictMode>
+      <MemoryRouter initialEntries={['/write']}>
+        <nav aria-label="Authoring test targets">
+          <Link to="/write">Create target</Link>
+          <Link to={`/edit/${ID}`}>First edit target</Link>
+          <Link to={`/edit/${NEW_ID}`}>Second edit target</Link>
+        </nav>
+        <Routes>
+          <Route element={<WriteBlog />}>
+            <Route path="/write" element={<></>} />
+            <Route path="/edit/:id" element={<></>} />
+          </Route>
+        </Routes>
       </MemoryRouter>
     </StrictMode>,
   );
@@ -161,6 +183,69 @@ describe('authoring routes and form', () => {
     expect(getPosts()).toEqual([{ ...POST, title: 'New title', content: '  New text\n\n Last line  ' }]);
     expect(screen.getByRole('heading', { level: 1, name: 'New title' })).toBeInTheDocument();
     expect(window.crypto.randomUUID).not.toHaveBeenCalled();
+  });
+
+  it.each(['validation', 'storage'])('resets %s errors across same-instance authoring targets', async kind => {
+    const user = userEvent.setup();
+    let records = [POST, { ...POST, id: NEW_ID, title: 'Second note', content: 'Second content' }];
+    savePosts(records);
+    window.crypto.randomUUID.mockReturnValue('00000000-0000-4000-8000-000000000003');
+    mountRouteHarness();
+    const title = screen.getByRole('textbox', { name: 'Title' });
+    const content = screen.getByRole('textbox', { name: 'Content' });
+    const nativeWrite = Storage.prototype.setItem;
+    let blocked = false;
+    const write = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function persist(key, value) {
+      if (blocked && key === 'writespace_posts') throw new DOMException('private detail', 'SecurityError');
+      return nativeWrite.call(this, key, value);
+    });
+    const remove = vi.spyOn(Storage.prototype, 'removeItem');
+    const date = vi.spyOn(Date.prototype, 'toISOString');
+    const confirm = vi.spyOn(window, 'confirm');
+    const targets = [
+      { link: 'First edit target', index: 0 },
+      { link: 'Second edit target', index: 1 },
+      { link: 'Create target', index: null },
+    ];
+    for (const [step, target] of targets.entries()) {
+      if (kind === 'validation') {
+        await user.clear(title);
+        await user.clear(content);
+      } else {
+        await fill(user, 'Unsaved target title', 'Unsaved target content');
+        blocked = true;
+      }
+      await user.click(screen.getByRole('button', { name: step === 0 ? 'Publish Post' : 'Save Changes' }));
+      blocked = false;
+      if (kind === 'validation') {
+        expect(screen.getAllByRole('alert')).toHaveLength(2);
+        expect(title).toHaveAccessibleDescription('Title is required.');
+        expect(content).toHaveAccessibleDescription('Content is required. 0 characters');
+      } else {
+        expect(screen.getByRole('alert')).toHaveTextContent('Unable to save this post. Your draft has not been saved.');
+      }
+      if (target.index !== null) {
+        records = records.map((record, index) => index === target.index
+          ? { ...record, title: `Latest title ${step}`, content: `Latest content ${step}` }
+          : record);
+        savePosts(records);
+      }
+      const raw = localStorage.getItem('writespace_posts');
+      for (const spy of [write, remove, date, confirm, window.crypto.randomUUID]) spy.mockClear();
+      await user.click(screen.getByRole('link', { name: target.link }));
+      expect(screen.getByRole('textbox', { name: 'Title' })).toBe(title);
+      expect(screen.getByRole('textbox', { name: 'Content' })).toBe(content);
+      expect(title).toHaveValue(target.index === null ? '' : records[target.index].title);
+      expect(content).toHaveValue(target.index === null ? '' : records[target.index].content);
+      expect(title).toHaveAttribute('aria-invalid', 'false');
+      expect(content).toHaveAttribute('aria-invalid', 'false');
+      expect(title).not.toHaveAttribute('aria-describedby');
+      expect(content).toHaveAccessibleDescription(`${content.value.length} characters`);
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+      for (const spy of [write, remove, date, confirm, window.crypto.randomUUID]) expect(spy).not.toHaveBeenCalled();
+      expect(localStorage.getItem('writespace_posts')).toBe(raw);
+      expect(getPosts()).toEqual(records);
+    }
   });
 
   it.each(['/write', `/edit/${ID}`])('cancel at %s returns without saving typed changes', async path => {
