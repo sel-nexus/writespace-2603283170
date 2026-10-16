@@ -1,4 +1,4 @@
-/** Compose public discovery, identity, and protected reading routes; later slices own authoring and administration. */
+/** Compose public identity and discovery with guarded reading and authoring; administration belongs to a later slice. */
 import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { PublicNavbar } from './components/PublicNavbar.jsx';
@@ -6,6 +6,7 @@ import { Navbar } from './components/Navbar.jsx';
 import { ProtectedRoute } from './components/ProtectedRoute.jsx';
 import Home from './pages/Home.jsx';
 import ReadBlog from './pages/ReadBlog.jsx';
+import WriteBlog from './pages/WriteBlog.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
@@ -48,6 +49,22 @@ export default function App() {
           element={(
             <ProtectedRoute>
               <ReadBlog />
+            </ProtectedRoute>
+          )}
+        />
+        <Route
+          path="/write"
+          element={(
+            <ProtectedRoute>
+              <WriteBlog />
+            </ProtectedRoute>
+          )}
+        />
+        <Route
+          path="/edit/:id"
+          element={(
+            <ProtectedRoute>
+              <WriteBlog />
             </ProtectedRoute>
           )}
         />

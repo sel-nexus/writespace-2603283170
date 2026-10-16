@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BlogCard } from '../components/BlogCard.jsx';
 import { getPosts, getUsers } from '../utils/storage.js';
+import { getSession } from '../utils/auth.js';
 
 const writeStyle = 'inline-flex min-h-11 items-center rounded bg-primary-700 px-5 text-surface hover:bg-primary-800 '
   + 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
@@ -59,7 +60,10 @@ export default function Home() {
       ) : (
         <section aria-label="All posts" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, index) => (
-            <BlogCard key={post.id} post={post} index={index} authorRole={roles.get(post.authorId)} />
+            <BlogCard
+              key={post.id} post={post} index={index}
+              authorRole={roles.get(post.authorId)} session={getSession()}
+            />
           ))}
         </section>
       )}

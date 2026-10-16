@@ -24,6 +24,7 @@ function mount(props = {}) {
           <Route path="/" element={<BlogCard post={POST} {...props} />} />
           <Route path={`/blog/${POST.id}`} element={<h1>Reader destination</h1>} />
           <Route path="/login" element={<h1>Login destination</h1>} />
+          <Route path={`/edit/${POST.id}`} element={<h1>Edit destination</h1>} />
         </Routes>
       </MemoryRouter>
     </StrictMode>,
@@ -113,6 +114,33 @@ describe('BlogCard', () => {
     expect(screen.queryByRole('heading', { name: /destination/ })).not.toBeInTheDocument();
     await user.click(link);
     expect(screen.getByRole('heading', { name: guest ? 'Login destination' : 'Reader destination' })).toBeInTheDocument();
+  });
+
+  it.each([
+    [{ userId: 'admin', role: 'admin' }, true],
+    [{ userId: 'writer', role: 'user' }, true],
+    [{ userId: 'other', role: 'user' }, false],
+    [null, false],
+  ])('shows Edit only to the supplied authorized session %j', (session, allowed) => {
+    mount({ post: { ...POST, authorId: 'writer' }, session });
+    const edit = screen.queryByRole('link', { name: 'Edit' });
+    if (allowed) {
+      expect(edit).toHaveAttribute('href', `/edit/${POST.id}`);
+      expect(screen.getByRole('link', { name: POST.title })).not.toContainElement(edit);
+    } else expect(edit).not.toBeInTheDocument();
+  });
+
+  it('never shows a management link on guest previews even with an administrator prop', () => {
+    mount({ guest: true, session: { userId: 'admin', role: 'admin' } });
+    expect(screen.queryByRole('link', { name: 'Edit' })).not.toBeInTheDocument();
+  });
+
+  it('activates the separate Edit link without activating the main reader link', async () => {
+    const user = userEvent.setup();
+    mount({ session: { userId: 'admin', role: 'admin' } });
+    await user.click(screen.getByRole('link', { name: 'Edit' }));
+    expect(screen.getByRole('heading', { name: 'Edit destination' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Reader destination' })).not.toBeInTheDocument();
   });
 
   it('never mutates its frozen post or storage on render', () => {

@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getAvatar } from './Avatar.jsx';
+import { canManagePost } from '../utils/posts.js';
 
 const accents = ['border-t-indigo-500', 'border-t-violet-500', 'border-t-pink-500', 'border-t-teal-500'];
 
@@ -27,10 +28,11 @@ export function formatDate(value) {
  *   props.index (number): Display position for the source cycling top accent.
  *   props.authorRole (string): Resolved author role; built-in admin defaults to admin, others to user.
  *   props.guest (boolean): Whether preview activation must route to login.
+ *   props.session (object|null): Current validated identity for management-link visibility; defaults to anonymous.
  * Returns:
- *   {JSX.Element} Non-mutating card; management actions belong to their owning pages.
+ *   {JSX.Element} Non-mutating card with a separate authorized edit link.
  */
-export function BlogCard({ post, index = 0, authorRole, guest = false }) {
+export function BlogCard({ post, index = 0, authorRole, guest = false, session = null }) {
   const role = authorRole ?? (post.authorId === 'admin' ? 'admin' : 'user');
   const accent = accents[index % accents.length] || accents[0];
   return (
@@ -55,6 +57,14 @@ export function BlogCard({ post, index = 0, authorRole, guest = false }) {
           {post.authorName}
         </span>
       </div>
+      {!guest && canManagePost(session, post) && (
+        <Link
+          to={`/edit/${post.id}`}
+          className="mt-4 inline-flex min-h-11 items-center rounded underline focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          Edit
+        </Link>
+      )}
     </article>
   );
 }
@@ -71,4 +81,10 @@ BlogCard.propTypes = {
   index: PropTypes.number,
   authorRole: PropTypes.string,
   guest: PropTypes.bool,
+  session: PropTypes.shape({
+    userId: PropTypes.string.isRequired,
+    username: PropTypes.string,
+    displayName: PropTypes.string,
+    role: PropTypes.oneOf(['admin', 'user']).isRequired,
+  }),
 };

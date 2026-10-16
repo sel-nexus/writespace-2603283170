@@ -1,5 +1,6 @@
 /** Resolve a route post and render complete plain text with current-session action visibility. */
-import { Link, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getAvatar } from '../components/Avatar.jsx';
 import { formatDate } from '../components/BlogCard.jsx';
 import { getSession } from '../utils/auth.js';
@@ -8,21 +9,13 @@ import { getPosts, getUsers } from '../utils/storage.js';
 const linkStyle = 'inline-flex min-h-11 items-center rounded underline underline-offset-4 '
   + 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
 
-/**
- * Allow management only for a current administrator or a matching ordinary owner.
- * Args:
- *   session (object|null): Validated current identity, not the shell snapshot.
- *   post (object): Resolved post with its persisted author ID.
- * Returns:
- *   {boolean} Whether an edit action may be displayed; handlers must repeat this check when implemented.
- */
-export function canManagePost(session, post) {
-  return session?.role === 'admin'
-    || (session?.role === 'user' && session.userId === post.authorId);
-}
+export { canManagePost } from '../utils/posts.js';
+import { canManagePost, deletePost } from '../utils/posts.js';
 
 /**
- * Read the URL-selected post without creating, repairing, editing, or deleting any record.
+ * Read the URL-selected post and expose authorized, explicitly confirmed deletion.
+ * Notes:
+ *   Rendering never creates, repairs, edits, or deletes records.
  * Returns:
  *   {JSX.Element} Complete reader or exact not-found state, with an explicit back-to-list link.
  * Notes:
@@ -31,8 +24,28 @@ export function canManagePost(session, post) {
  */
 export default function ReadBlog() {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [failure, setFailure] = useState('');
   const post = getPosts().find(record => record.id === id);
   const session = getSession();
+
+  /**
+   * Request authorized confirmation only from explicit button activation.
+   * Returns:
+   *   {void} Navigate on durable deletion; retain the reader with safe feedback otherwise.
+   */
+  function removePost() {
+    const result = deletePost({ id });
+    if (result.ok) navigate(result.navigateTo);
+    else if (result.reason !== 'cancelled') {
+      const messages = {
+        forbidden: 'You no longer have permission to delete this post.',
+        not_found: 'Post not found.',
+        storage_write_failed: 'Unable to delete this post. Nothing has been saved.',
+      };
+      setFailure(messages[result.reason]);
+    }
+  }
   if (!post) {
     return (
       <main id="main-content" className="mx-auto max-w-6xl px-6 py-20 sm:px-8">
@@ -73,7 +86,17 @@ export default function ReadBlog() {
               Edit
             </Link>
           )}
+          {canManagePost(session, post) && (
+            <button type="button" onClick={removePost} className={`${linkStyle} text-error`}>
+              Delete post
+            </button>
+          )}
         </nav>
+        {failure && (
+          <p role="alert" className="mt-4 text-error">
+            {failure}
+          </p>
+        )}
       </article>
     </main>
   );
