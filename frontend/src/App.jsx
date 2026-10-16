@@ -1,8 +1,11 @@
-/** Compose public discovery and identity routes without inventing the later protected pages. */
+/** Compose public discovery, identity, and protected reading routes; later slices own authoring and administration. */
 import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { PublicNavbar } from './components/PublicNavbar.jsx';
 import { Navbar } from './components/Navbar.jsx';
+import { ProtectedRoute } from './components/ProtectedRoute.jsx';
+import Home from './pages/Home.jsx';
+import ReadBlog from './pages/ReadBlog.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
@@ -11,7 +14,7 @@ import { getSession } from './utils/auth.js';
 /**
  * Render the public or authenticated shell inside the single router supplied by main.
  * Returns:
- *   {JSX.Element} Public root, identity forms, and unchanged fallback; later slices own protected pages.
+ *   {JSX.Element} Public root, identity forms, protected reading pages, and the unchanged unknown-route fallback.
  */
 export default function App() {
   const [session, setSession] = useState(() => getSession());
@@ -32,6 +35,22 @@ export default function App() {
         <Route path="/" element={<LandingPage session={session} />} />
         <Route path="/login" element={<LoginPage onSessionChange={setSession} />} />
         <Route path="/register" element={<RegisterPage onSessionChange={setSession} />} />
+        <Route
+          path="/blogs"
+          element={(
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          )}
+        />
+        <Route
+          path="/blog/:id"
+          element={(
+            <ProtectedRoute>
+              <ReadBlog />
+            </ProtectedRoute>
+          )}
+        />
         <Route
           path="*"
           element={(
